@@ -24,15 +24,15 @@ public class StringWithUniqueCharactersWithOutExtraSpace {
 	//Not sure how this logic works
 	//Need to revist. 
 	private static boolean uniqueCharacters(String str) {
-		
-		int checker = 0;
-		for(int i = 0; i < str.length(); i++) {
-			int val = str.charAt(i) - 'a';
-			int compare = checker & (1 << val);
-			if(compare > 0) {
+		if(str==null){
+			return false;
+		}
+		str = str.trim();
+		int[] hash  = new int[256];
+		for(int i=0;i<str.length();i++){
+			hash[str.charAt(i)]++;
+			if(hash[str.charAt(i)]>1)
 				return false;
-			} 
-			checker = checker | (1 << val);
 		}
 		return true;
 	}
